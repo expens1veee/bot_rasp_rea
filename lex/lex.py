@@ -8,5 +8,6 @@ LEXICON: dict[str, str] = {
 }
 
 LEXICON_COMMANDS: dict[str, str] = {
+    '/start': "Запуск бота",
     '/help': 'Справка по работе бота'
 }
