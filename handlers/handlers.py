@@ -8,7 +8,6 @@ from aiogram.types import CallbackQuery, Message
 from rasp_rea_bot.lex.lex import LEXICON
 from rasp_rea_bot.scrap.scrap import lst
 from rasp_rea_bot.keyboards.buttons import create_keyboard
-# from rasp_rea_bot.
 
 
 router = Router()
