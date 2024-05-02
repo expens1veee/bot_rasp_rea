@@ -8,7 +8,7 @@ from aiogram.types import CallbackQuery, Message
 from rasp_rea_bot.lex.lex import LEXICON
 from rasp_rea_bot.scrap.scrap import lst
 from rasp_rea_bot.keyboards.buttons import create_keyboard
-
+# from rasp_rea_bot.
 
 
 router = Router()
@@ -38,36 +38,36 @@ async def procces_rasp_command(message: Message):
 @router.message(F.text =='Расписание на понедельник')
 async def procces_rasp_command(message: Message):
     curr = lst.head
-    await message.answer(curr.data)
+    await message.answer(lst.print_i_elem(0))
 
 
 @router.message(F.text == 'Расписание на вторник')
 async def procces_rasp_command(message: Message):
     curr = lst.head
-    await message.answer(curr.next.data)
+    await message.answer(lst.print_i_elem(1))
 
 
 @router.message(F.text == 'Расписание на среду')
 async def procces_rasp_command(message: Message):
     curr = lst.head
-    await message.answer(curr.next.next.data)
+    await message.answer(lst.print_i_elem(2))
 
 
 @router.message(F.text == 'Расписание на четверг')
 async def procces_rasp_command(message: Message):
     curr = lst.head
-    await message.answer(curr.next.next.next.data)
+    await message.answer(lst.print_i_elem(3))
 
 
 @router.message(F.text == 'Расписание на пятницу')
 async def procces_rasp_command(message: Message):
     curr = lst.head
-    await message.answer(curr.next.next.next.next.data)
+    await message.answer(lst.print_i_elem(4))
 
 @router.message(F.text =='Расписание на субботу')
 async def procces_rasp_command(message: Message):
         curr = lst.head
-        await message.answer(curr.next.next.next.next.next.data)
+        await message.answer(lst.print_i_elem(5))
 
 
 @router.message()
