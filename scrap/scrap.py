@@ -1,97 +1,83 @@
 import selenium.webdriver
 from selenium.webdriver.common.by import By
 from rasp_rea_bot.scrap.linked_list import LinkedList
-driver = selenium.webdriver.Chrome() # Firefox()
+driver = selenium.webdriver.Chrome()  # Firefox()
 
 driver.get('https://rasp.rea.ru/?q=15.27д-мо02%2F23б#today')
 driver.maximize_window()
 
 all_cards = driver.find_elements(By.XPATH, '//*[@id="zoneTimetable"]/div')
 
-str1 = ''
-for row in all_cards:
-    str1+=row.text
+str_1 = ''.join(row.text for row in all_cards)
 
-f = open ('rasp.txt','w')
+with open('rasp.txt', 'w') as f:
+    f.write(str_1)
+    f.close()
 
-f.write(str1)
-f.close()
-
-f = open ('rasp.txt','r')
-rasp = f.read()
-f.close()
-# print(rasp)
+with open('rasp.txt', 'r') as f:
+    rasp = f.read()
+    f.close()
 
 
 lst = LinkedList()
-# cf = ['1','2','3','4','5','6']
-pn = ''
+monday = ''
 a = 0
-for i in range (a,len(rasp)):
+
+for i in range(a, len(rasp)):
     if rasp[i] != 'В' and rasp[i+1] != 'Т':
-            pn+=rasp[i]
+        monday += rasp[i]
     else:
         a = i
         break
-# print(strr)
-lst.InsertAtEnd(pn)
-# lst.printLL()
 
-vt =''
+lst.InsertAtEnd(monday)
+
+
+tuesday = ''
 for i in range(a, len(rasp)):
     if rasp[i] != 'С' and rasp[i+2] != 'Е':
-        vt+=rasp[i]
+        tuesday += rasp[i]
     else:
         a = i
         break
 
-lst.InsertAtEnd(vt)
-# lst.printLL()
+lst.InsertAtEnd(tuesday)
 
-sr =''
+wednesday = ''
 for i in range(a, len(rasp)):
     if rasp[i] != ' Ч' and rasp[i+2] != 'Т':
-        sr+=rasp[i]
+        wednesday += rasp[i]
     else:
         a = i
         break
 
-lst.InsertAtEnd(sr)
-# lst.printLL()
+lst.InsertAtEnd(wednesday)
 
 
-ch =''
+thursday = ''
+
 for i in range(a, len(rasp)):
     if rasp[i] != ' П' and rasp[i+1] != 'Я':
-        ch+=rasp[i]
+        thursday += rasp[i]
     else:
         a = i
         break
-lst.InsertAtEnd(ch)
+lst.InsertAtEnd(thursday)
 
 
-pt =''
+friday = ''
+
 for i in range(a, len(rasp)):
     if rasp[i] != ' С' and rasp[i+2] != 'У':
-        pt+=rasp[i]
+        friday += rasp[i]
     else:
         a = i
         break
-lst.InsertAtEnd(pt)
+lst.InsertAtEnd(friday)
 
 
-sub = ''
+saturday = ''
+
 for i in range(a, len(rasp)):
-        sub+=rasp[i]
-lst.InsertAtEnd(sub)
-
-
-
-
-
-
-
-
-
-
-
+    saturday += rasp[i]
+lst.InsertAtEnd(saturday)

@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 from aiogram import F, Router
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
@@ -21,7 +19,6 @@ async def procces_start_command(message: Message):
 @router.message(Command(commands='help'))
 async def procces_help_command(message: Message):
     await message.answer(LEXICON[message.text])
-
 
 
 @router.message(Command(commands='rasp'))
@@ -63,15 +60,16 @@ async def procces_rasp_command(message: Message):
     curr = lst.head
     await message.answer(lst.print_i_elem(4))
 
+
 @router.message(F.text =='Расписание на субботу')
 async def procces_rasp_command(message: Message):
-        curr = lst.head
-        await message.answer(lst.print_i_elem(5))
+    curr = lst.head
+    await message.answer(lst.print_i_elem(5))
 
 
 @router.message()
 async def send_warning(message: Message):
-        await message.answer(text='Я тебя не понимаю! Используй кнопки под клавиатурой или меню')
+    await message.answer(text='Я тебя не понимаю! Используй кнопки под клавиатурой или меню')
 
 
 
